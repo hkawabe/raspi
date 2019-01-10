@@ -1,0 +1,54 @@
+---
+- hosts: raspberrypi
+  gather_facts: true
+  remote_user: pi
+  become: true
+  become_user: root
+  become_method: sudo
+  tasks:
+#  - name: Remove ssh public key
+#    shell: ssh-keygen -R {{inventory_hostname}}
+  - name: Add a new become_user
+    user: name=hiraku group=users state=present shell=/bin/bash createhome=yes
+#  - name: Add a sudo user
+#    lineinfile: "dest=/etc/sudoers backup=yes state=present regexp='^hiraku' line='hiraku ALL=(ALL) NOPASSWD: ALL'"
+  - name: Install python-apt
+    raw: apt-get update && sudo apt-get -y dist-upgrade && sudo apt-get -y autoremove && sudo apt-get autoclean &&apt-get install -y -q python-apt
+  - name: Update apt package
+    apt: name={{item}} state=present update_cache=yes
+    with_items:
+      - zshhttps://github.com/ContainX/docker-volume-netshare/blob/master/support/systemd/lib/systemd/system/docker-volume-netshare.service
+      - screen
+      - git
+  - name: Update hostname
+    raw: raspi-config nonint do_hostname alpha
+  - name: Update timezone
+    raw: timedatectl set-timezone Asia/Tokyo
+  - name: Update locale
+    raw: perl -pe 's/^#(en_US.UTF-8 UTF-8)/$1/g' -i /etc/locale.gen
+  - name: Update wi-fi country
+    raw: raspi-config nonint do_wifi_country JP
+#  - name: Update ssh host key step 1
+#    raw: rm -v /etc/ssh/ssh_host*
+#  - name: Update ssh host key step 2
+#    raw: dpkg-reconfigure openssh-server
+  - name: Update resolv.conf file
+    blockinfile:
+      dest: /etc/resolv.conf
+      insertbefore: nameserver
+      content: search hkawabe.net
+  - name: Update fstab file
+    blockinfile:
+      dest: /etc/fstab
+      insertbefore: '^#'
+      content: 192.168.5.1:/volume1/homes /home nfs
+  - name: Mount nfs server's dirctory
+    raw: mount -a
+#  - name: Install docker
+#    raw: curl -sSL https://get.docker.com | sh
+  - name: Install docker-volume
+    raw: TEMP_DEB="$(mktemp)" && wget -O $TEMP_DEB https://github.com/gondor/docker-volume-netshare/releases/download/v0.17/docker-volume-netshare_0.17_armhf.deb && dpkg -i $TEMP_DEB
+...
+
+# replase /etc/os-release ID=raspberry ID=debian
+# https://github.com/ContainX/docker-volume-netshare/blob/master/support/systemd/lib/systemd/system/docker-volume-netshare.service

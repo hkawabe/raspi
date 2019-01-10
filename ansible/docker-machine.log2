@@ -1,0 +1,2 @@
+ docker-machine -D create --driver generic --generic-ip-address=192.168.5.12 --generic-ssh-key ~/.ssh/id_rsa --generic-ssh-user=pi --engine-storage-driver=overlay beta
+ docker volume create -d nfs --name yggdrasill/volume1/homes/vmail

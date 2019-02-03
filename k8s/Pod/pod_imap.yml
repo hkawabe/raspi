@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: imapserver
+spec:
+  volumes:
+  - name: imapserver-data
+    persistentVolumeClaim:
+      claimName: vmail-pvc
+  containers:
+  - image: hkawabe/dovecot:0.1
+    name: dovecot
+    volumeMounts:
+    - name: imapserver-data
+      mountPath: /home/vmail
+    ports:
+    - containerPort: 143
+      protocol: TCP

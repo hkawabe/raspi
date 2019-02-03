@@ -1,0 +1,21 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dovecot
+  labels:
+    app: dovecot
+spec:
+  volumes:
+  - name: mailbox
+    persistentVolumeClaim:
+      claimName: pvc-mail
+  containers:
+  - image: hkawabe/dovecot:0.1
+    name: dovecot
+    volumeMounts:
+    - name: mailbox
+      mountPath: /home/vmail
+    ports:
+    - containerPort: 143
+      protocol: TCP

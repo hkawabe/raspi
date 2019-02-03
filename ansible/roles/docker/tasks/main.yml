@@ -1,0 +1,22 @@
+- name: start docker
+  systemd:
+    name: docker.service
+    enabled: yes
+    state: started
+    daemon-reload: yes
+
+- name: install docker-volume
+  apt:
+    deb: https://github.com/ContainX/docker-volume-netshare/releases/download/v0.35/docker-volume-netshare_0.35_armhf.deb
+
+- name: install docker-volume systemd script
+  get_url:
+    url: https://github.com/ContainX/docker-volume-netshare/blob/v0.35/support/systemd/lib/systemd/system/docker-volume-netshare.service
+    dest: /etc/systemd/system/docker-volume-netshare.serivce
+
+- name: start docker-volume
+  systemd:
+    name: docker-volume-netshare
+    enabled: yes
+    state: started
+    daemon-reload: yes

@@ -1,0 +1,28 @@
+---
+- name: disable swap
+  shell: |
+    dphys-swapfile swapoff
+    dphys-swapfile uninstall
+    update-rc.d dphys-swapfile remove
+
+- name: regist key
+  apt_key:
+    url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+# shell: curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+
+- name: regist repository
+  apt_repository:
+    repo: deb http://apt.kubernetes.io/ kubernetes-xenial main
+    state: present
+    filename: kubernetes.list
+
+- name: install kubernetes
+  apt:
+    update_cache: yes
+    name: "{{ item }}"
+  with_items:
+    - kubelet
+    - kubeadm
+    - kubectl
+    - kubernetes-cni
+     

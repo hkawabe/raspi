@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: imap
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 143
+    targetPort: 143
+  selector:
+    app: dovecot

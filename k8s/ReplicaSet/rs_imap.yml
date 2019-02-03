@@ -1,0 +1,28 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: dovecot
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dovecot
+  template:
+    metadata:
+      labels:
+        app: dovecot
+    spec:
+      volumes:
+      - name: mailbox
+        persistentVolumeClaim:
+          claimName: pvc-mail
+      containers:
+      - image: hkawabe/dovecot:0.1
+        name: dovecot
+        volumeMounts:
+        - name: mailbox
+          mountPath: /home/vmail
+        ports:
+        - containerPort: 143
+          protocol: TCP

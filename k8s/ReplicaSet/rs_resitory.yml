@@ -19,8 +19,8 @@ spec:
         volumeMounts:
         - name: imagefolder
           mountPath: /var/lib/registry
-        - name: config-volume
-          mountPath: /etc/docker/registry/config.yml
+#        - name: config-volume
+#          mountPath: /etc/docker/registry/config.yml
         ports:
         - containerPort: 5000
           protocol: TCP
@@ -28,6 +28,6 @@ spec:
       - name: imagefolder
         persistentVolumeClaim:
           claimName: pvc-dockerimage
-      - name: config-volume
-        configMap:
-          name: registry-config
+#      - name: config-volume
+#        configMap:
+#          name: registry-config

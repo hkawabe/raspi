@@ -13,16 +13,21 @@ spec:
       labels:
         app: dovecot
     spec:
-      volumes:
-      - name: mailbox
-        persistentVolumeClaim:
-          claimName: pvc-mail
       containers:
-      - image: hkawabe/dovecot:0.1
+      - image: hkawabe/dovecot:latest
         name: dovecot
         volumeMounts:
         - name: mailbox
           mountPath: /home/vmail
+        - name: config-volume
+          mountPath: /etc/dovecot
         ports:
         - containerPort: 143
           protocol: TCP
+      volumes:
+      - name: mailbox
+        persistentVolumeClaim:
+          claimName: pvc-mail
+      - name: config-volume
+        configMap:
+          name: dovecot-config

@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc-vmail
+  name: pvc-dockerimage
 spec:
   resources:
     requests:
@@ -11,5 +11,5 @@ spec:
   - ReadWriteMany
   selector:
     matchLabels:
-      name: vmail
+      name: dockerimage
   storageClassName: ""

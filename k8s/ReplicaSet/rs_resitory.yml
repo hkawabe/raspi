@@ -1,0 +1,33 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: rs-registry
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: resistry
+  template:
+    metadata:
+      labels:
+        app: resistry
+    spec:
+      containers:
+      - image: budry/registry-arm:latest
+        name: registry
+        volumeMounts:
+        - name: imagefolder
+          mountPath: /var/lib/registry
+        - name: config-volume
+          mountPath: /etc/docker/registry/config.yml
+        ports:
+        - containerPort: 5000
+          protocol: TCP
+      volumes:
+      - name: imagefolder
+        persistentVolumeClaim:
+          claimName: pvc-dockerimage
+      - name: config-volume
+        configMap:
+          name: registry-config

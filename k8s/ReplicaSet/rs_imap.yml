@@ -27,7 +27,9 @@ spec:
       volumes:
       - name: mailbox
         persistentVolumeClaim:
-          claimName: pvc-mail
+          claimName: pvc-vmail
       - name: config-volume
         configMap:
           name: dovecot-config
+      imagePullSecrets:
+      - name: secdockerhub

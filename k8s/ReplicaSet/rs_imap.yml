@@ -14,7 +14,7 @@ spec:
         app: dovecot
     spec:
       containers:
-      - image: hkawabe/dovecot:latest
+      - image: hkawabe/dovecot:0.2
         name: dovecot
         volumeMounts:
         - name: mailbox

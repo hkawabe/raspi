@@ -4,9 +4,12 @@ kind: Service
 metadata:
   name: imap
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
-  - port: 143
+  - name: "imap-port"
+    protocol: "TCP"
+    port: 143
     targetPort: 143
+    nodePort: 30143
   selector:
     app: dovecot

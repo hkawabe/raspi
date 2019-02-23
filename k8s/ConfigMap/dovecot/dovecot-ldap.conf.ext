@@ -1,0 +1,11 @@
+  hosts = ldap.hkawabe.net
+  tls = no
+  auth_bind = yes
+  auth_bind_userdn = uid=%n,cn=users,dc=hkawabe,dc=net
+  ldap_version = 3
+  base = dc=hkawabe,dc=net
+  deref = never
+  scope = subtree
+  user_attrs = uid=1002 gid=1002
+  user_filter = (&(objectClass=posixAccount)(uid=%n))
+  pass_filter = (&(objectClass=posixAccount)(uid=%u))

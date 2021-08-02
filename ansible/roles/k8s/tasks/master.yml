@@ -2,3 +2,14 @@
 - name: init master
 
  
+# kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+# curl -L https://istio.io/downloadIstio | sh -
+# istioctl install --set profile=demo
+# curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+#chmod 700 get_helm.sh
+# helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+# sudo helm install stable/nfs-client-provisioner --set nfs.server=192.168.5.1 --set nfs.path=/volume1/raspik8s --generate-name
+# docker pull quay.io/external_storage/nfs-client-provisioner:latest
+
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v0.40.1/deploy/static/provider/cloud/deploy.yaml

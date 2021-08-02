@@ -19,18 +19,18 @@
   roles:
     - { role: k8s, tags: k8s }
     
-- name: initialize k8s master
-  hosts: master
-  gather_facts: false
-  become: yes
-  become_user: root
-  become_method: sudo
+#- name: initialize k8s master
+#  hosts: master
+#  gather_facts: false
+#  become: yes
+#  become_user: root
+#  become_method: sudo
 
-  roles:
-    - { role: k8s_init, tags: k8s_init }
+#  roles:
+#    - { role: k8s_init, tags: k8s_init }
 
-- name: join k8s worker 
-  gather_facts: false
-  become: yes
-  become_user: root
-  become_method: sudo
+#- name: join k8s worker
+#  gather_facts: false
+#  become: yes
+#  become_user: root
+#  become_method: sudo

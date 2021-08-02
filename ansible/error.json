@@ -1,0 +1,21 @@
+fatal: [master.local]:
+FAILED! => {"changed": true, "cmd": "curl -sSL https://get.docker.com | sh", "delta": "0:01:29.145095",
+"end": "2020-08-30 10:03:02.584202", "msg": "non-zero return code", "rc": 100,
+"start": "2020-08-30 10:01:33.439107",
+"stderr": "+ sh -c apt-get update -qq >/dev/null\n+ sh -c DEBIAN_FRONTEND=noninteractive apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null\n
++ sh -c curl -fsSL \"https://download.docker.com/linux/raspbian/gpg\" | apt-key add -qq - >/dev/null\
+nWarning: apt-key output should not be parsed (stdout is not a terminal)\n+ sh -c echo \
+"deb [arch=armhf] https://download.docker.com/linux/raspbian buster stable\" > /etc/apt/sources.list.d/docker.list\n
++ sh -c apt-get update -qq >/dev/null\n+ [ -n  ]\n+ sh -c apt-get install -y -qq --no-install-recommends docker-ce >/dev/null\n
+E: Sub-process /usr/bin/dpkg returned an error code (1)", "stderr_lines": ["+ sh -c apt-get update -qq >/dev/null",
+"+ sh -c DEBIAN_FRONTEND=noninteractive apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null",
+"+ sh -c curl -fsSL \"https://download.docker.com/linux/raspbian/gpg\" | apt-key add -qq - >/dev/null",
+"Warning: apt-key output should not be parsed (stdout is not a terminal)",
+"+ sh -c echo \"deb [arch=armhf] https://download.docker.com/linux/raspbian buster stable\" > /etc/apt/sources.list.d/docker.list",
+"+ sh -c apt-get update -qq >/dev/null", "+ [ -n  ]",
+"+ sh -c apt-get install -y -qq --no-install-recommends docker-ce >/dev/null",
+"E: Sub-process /usr/bin/dpkg returned an error code (1)"],
+"stdout": "# Executing docker install script, commit: 26ff363bcf3b3f5a00498ac43694bf1c7d9ce16c",
+"stdout_lines": ["# Executing docker install script, commit: 26ff363bcf3b3f5a00498ac43694bf1c7d9ce16c"]}
+fatal: [node01.local]: FAILED! => {"changed": true, "cmd": "curl -sSL https://get.docker.com | sh", "delta": "0:03:28.735642", "end": "2020-08-30 10:05:12.109352", "msg": "non-zero return code", "rc": 100, "start": "2020-08-30 10:01:43.373710", "stderr": "+ sh -c apt-get update -qq >/dev/null\n+ sh -c DEBIAN_FRONTEND=noninteractive apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null\n+ sh -c curl -fsSL \"https://download.docker.com/linux/raspbian/gpg\" | apt-key add -qq - >/dev/null\nWarning: apt-key output should not be parsed (stdout is not a terminal)\n+ sh -c echo \"deb [arch=armhf] https://download.docker.com/linux/raspbian buster stable\" > /etc/apt/sources.list.d/docker.list\n+ sh -c apt-get update -qq >/dev/null\n+ [ -n  ]\n+ sh -c apt-get install -y -qq --no-install-recommends docker-ce >/dev/null\nE: Sub-process /usr/bin/dpkg returned an error code (1)", "stderr_lines": ["+ sh -c apt-get update -qq >/dev/null", "+ sh -c DEBIAN_FRONTEND=noninteractive apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null", "+ sh -c curl -fsSL \"https://download.docker.com/linux/raspbian/gpg\" | apt-key add -qq - >/dev/null", "Warning: apt-key output should not be parsed (stdout is not a terminal)", "+ sh -c echo \"deb [arch=armhf] https://download.docker.com/linux/raspbian buster stable\" > /etc/apt/sources.list.d/docker.list", "+ sh -c apt-get update -qq >/dev/null", "+ [ -n  ]", "+ sh -c apt-get install -y -qq --no-install-recommends docker-ce >/dev/null", "E: Sub-process /usr/bin/dpkg returned an error code (1)"], "stdout": "# Executing docker install script, commit: 26ff363bcf3b3f5a00498ac43694bf1c7d9ce16c", "stdout_lines": ["# Executing docker install script, commit: 26ff363bcf3b3f5a00498ac43694bf1c7d9ce16c"]
+}

@@ -1,0 +1,35 @@
+---
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: jenkins
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      containers:
+      - image: jenkins/jenkins
+        name: jenkins
+        volumeMounts:
+        - name: mailbox
+          mountPath: /home/vmail
+        - name: config-volume
+          mountPath: /etc/dovecot
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+      volumes:
+      - name: mailbox
+        persistentVolumeClaim:
+          claimName: pvc-vmail
+      - name: config-volume
+        configMap:
+          name: dovecot-config
+      imagePullSecrets:
+      - name: secdockerhub
